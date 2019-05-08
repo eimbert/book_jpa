@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+		<h1 th:text="${titulo}"></h1>
+	</div>
+	<br>
+	<div th:if="${library.size()>0}" class="container">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Título</th>
+					<th scope="col">ISBN</th>
+					<th scope="col">Número de páginas</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="book:${library}">
+					<td th:text="${book.title}"></td>
+					<td th:text="${book.ISBN}"></td>
+					<td th:text="${book.pages}"></td>
+					<td ><a th:href="@{/books/deleteBook/(book=${book})}" class="btn btn-primary">Borrar libro</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<br>
+	<div th:if="${library.size()==0}" class="container">No existen libros disponibles.</div>
+	<div class="container">
+		<a th:href="@{/books/newBook}" class="btn btn-primary">Añadir nuevo libro</a>
+	</div>
+
+</body>
+</html>
