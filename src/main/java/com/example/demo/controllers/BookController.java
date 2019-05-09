@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
-import com.example.demo.Repositories.IBooksDao;
-import com.example.demo.services.entity.Book;
+import com.example.demo.models.dao.IBooksDao;
+import com.example.demo.models.entity.Book;
+import com.example.demo.models.service.IBookService;
 
 
 @Controller
@@ -22,8 +22,8 @@ import com.example.demo.services.entity.Book;
 public class BookController {
 
 	@Autowired
-	@Qualifier("clienteDaoJPA")
-	IBooksDao service;
+	
+	IBookService service;
 	
 	@Autowired
 	Book book;
@@ -50,8 +50,17 @@ public class BookController {
 				 model.addAttribute("titulo", "Formulario nuevo libro");
 				 return "new_book";
 			 }
+			 
 			 service.save(book); 
 			 return "redirect:library"; 
+	}
+	
+	@RequestMapping(value="/edit/{title}", method = RequestMethod.GET) 
+	public String editBook (@PathVariable(value="title") String id, Model model) {
+
+			 model.addAttribute("book", service.findOne(id)); 
+			 model.addAttribute("titulo", "Formulario modificación datos libro");
+			 return "new_book"; 
 	}
 	
 	@RequestMapping(value="/delete/{title}") 
