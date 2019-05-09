@@ -30,10 +30,17 @@ public class BookDaoImpl implements IBooksDao {
 		em.persist(book);
 		
 	}
+	
+	@Override
+	@Transactional
+	public void delete(String id) {
+		em.remove(findOne(id));
+	}
 
 	@Override
-	public void delete(Book book) {
-		em.remove(book);
+	@Transactional(readOnly=true)
+	public Book findOne(String id) {
+		return em.find(Book.class, id);
 	}
 
 }

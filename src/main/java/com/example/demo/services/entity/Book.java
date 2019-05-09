@@ -16,9 +16,11 @@ public class Book implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@NotEmpty(message="El titulo del libro no es opcional")
 	private String title;
-	@NotEmpty
+	@NotEmpty(message="El código ISBN no es un campo opcional")
 	private String ISBN;
+	@Positive 
 	@Min(value =  1, message = "El número de paginas debe de ser mayor a 0.")
 	private int pages;
 

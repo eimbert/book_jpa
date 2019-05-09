@@ -8,5 +8,6 @@ public interface IBooksDao {
 
 		public List<Book> findAll();
 		public void save(Book book);
-		public void delete(Book book);
+		public void delete(String id);
+		public Book findOne(String id);
 }
