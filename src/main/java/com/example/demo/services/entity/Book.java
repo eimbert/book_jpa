@@ -1,16 +1,25 @@
-package com.example.demo;
+package com.example.demo.services.entity;
+
+import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.*;
+
 
 
 @Entity
 @Table(name = "books")
-public class Book {
+public class Book implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	private String title;
+	@NotEmpty
 	private String ISBN;
+	@Min(value =  1, message = "El número de paginas debe de ser mayor a 0.")
 	private int pages;
 
 	public String getTitle() {

@@ -13,6 +13,7 @@
 		<h1 th:text="${titulo}"></h1>
 	</div>
 	<br>
+	<form th:action="@{/books/delete}" th:object="${book}" method="post">
 	<div th:if="${library.size()>0}" class="container">
 		<table class="table table-striped">
 			<thead>
@@ -23,15 +24,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="book:${library}">
-					<td th:text="${book.title}"></td>
-					<td th:text="${book.ISBN}"></td>
-					<td th:text="${book.pages}"></td>
-					<td ><a th:href="@{/books/deleteBook/(book=${book})}" class="btn btn-primary">Borrar libro</a></td>
+				<tr th:each="b:${library}" >
+					<td th:text="${b.title}" th:field="*{title}"></td>
+					<td th:text="${b.ISBN}" th:field="*{ISBN}"></td>
+					<td th:text="${b.pages}" th:field="*{pages}"></td>
+					<td ><button  type="submit" value="SEND" class="btn btn-primary">Borrar libro</button></td>
+					
 				</tr>
 			</tbody>
 		</table>
 	</div>
+	</form>
 	<br>
 	<div th:if="${library.size()==0}" class="container">No existen libros disponibles.</div>
 	<div class="container">
