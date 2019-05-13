@@ -1,9 +1,12 @@
 package com.example.demo.controllers.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.models.entity.Book;
+import com.example.demo.models.entity.weather.WeatherRest;
 import com.example.demo.models.service.IBookService;
 
 @RestController
@@ -33,4 +36,6 @@ public class BookRestController {
 	public void updateBook(@RequestBody Book book) {
 		repository.save(book);
 	}
+	
+	
 }

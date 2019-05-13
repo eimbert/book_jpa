@@ -11,37 +11,50 @@
 <body>
 	<div class="container">
 		<h1 th:text="${titulo}"></h1>
+		<br>
+		<div class="card">
+			<div class="card-header">
+				<h3 th:text="'Temperatura en: ' +${ciudad}+' '+${temp}"></h3>
+				<img th:src="@{http://openweathermap.org/img/w/}+${img}" />
+			</div>
+		</div>
 	</div>
 	<br>
-	
+
 	<div th:if="${library.size()>0}" class="container">
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th style="width:200px" align="center" th:text="'Título'"></th>
-					<th style="width:100px" align="left">ISBN</th>
-					<th style="width:70px" align="center">Páginas</th>
-					<th style="width:100px" align="center"></th>
-					<th style="width:100px" align="center"></th>
+					<th style="width: 200px" align="center" th:text="'Título'"></th>
+					<th style="width: 100px" align="left">ISBN</th>
+					<th style="width: 70px" align="center">Páginas</th>
+					<th style="width: 100px" align="center"></th>
+					<th style="width: 100px" align="center"></th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="b:${library}" >
-					<td style="width:200px" align="left" th:text="${b.title}" ></td>
-					<td style="width:100px" align="left" th:text="${b.ISBN}" ></td>
-					<td style="width:70px" align="center" th:text="${b.pages}" ></td>
-					<td style="width:100px" align="center"><a th:href="@{/books/delete/}+${b.title}" class="btn btn-primary">Borrar libro</a></td>
-					<td style="width:100px" align="center"><a th:href="@{/books/edit/}+${b.title}" class="btn btn-primary">Modificar datos</a></td>
-					
+				<tr th:each="b:${library}">
+					<td style="width: 200px" align="left" th:text="${b.title}"></td>
+					<td style="width: 100px" align="left" th:text="${b.ISBN}"></td>
+					<td style="width: 70px" align="center" th:text="${b.pages}"></td>
+					<td style="width: 100px" align="center"><a
+						th:href="@{/books/delete/}+${b.title}" class="btn btn-primary">Borrar
+							libro</a></td>
+					<td style="width: 100px" align="center"><a
+						th:href="@{/books/edit/}+${b.title}" class="btn btn-primary">Modificar
+							datos</a></td>
+
 				</tr>
 			</tbody>
 		</table>
 	</div>
-	
+
 	<br>
-	<div th:if="${library.size()==0}" class="container">No existen libros disponibles.</div>
+	<div th:if="${library.size()==0}" class="container">No existen
+		libros disponibles.</div>
 	<div class="container">
-		<a th:href="@{/books/newBook}" class="btn btn-primary">Añadir nuevo libro</a>
+		<a th:href="@{/books/newBook}" class="btn btn-primary">Añadir
+			nuevo libro</a>
 	</div>
 
 </body>
